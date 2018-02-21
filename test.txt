@@ -1,0 +1,25 @@
+corgi test ; 
+var a : Int;
+var x : Float;
+var array : Int[20];
+
+func one(param:Int)-> Bool{
+ array = [1,2,3,4];
+ for param in 0...3 by 1 {
+   array[1] = param;
+   x = 5;
+ }
+ return true;
+}
+
+corgiRun() {
+ var name: String;
+ case {
+   ((a+5)* 3)>c: x=2;
+   | c>a: x=4;
+   | else: x=3;
+ }
+ write((a+5));
+ read(x);
+ return 1;
+}
