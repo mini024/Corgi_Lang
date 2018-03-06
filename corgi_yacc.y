@@ -55,6 +55,17 @@ extern int yylineno;
 %token ARROW;
 %token RETURN;
 %token <strval> TYPE;
+%token LOW_OP;
+%token GRT_OP;
+%token NOT_EQ;
+%token LOW_EQ;
+%token GRT_EQ;
+%token EQ_EQ;
+%token AND_OP;
+%token OR_OP;
+
+
+
 
 %%
 
@@ -151,16 +162,20 @@ READ LFT_PAR id RGT_PAR SEMICOLON
 ;
 
 condicion:
-CASE LFT_BRA expresion COLON estatuto conditionAux conditionElse RGT_BRA
+CASE LFT_BRA expresion COLON estatuto conditionAux RGT_BRA
 ;
 
 conditionAux:
-CASE_OR expresion COLON estatuto conditionAux
+ CASE_OR condicion2
 | /*epsilon*/
 ;
 
+condicion2:
+expresion COLON estatuto conditionAux
+| conditionElse
+
 conditionElse:
-CASE_OR ELSE COLON
+ ELSE COLON estatuto
 | /*epsilon*/
 ;
 
@@ -170,15 +185,13 @@ FOR ID IN INT FOR_RANGE INT BY INT LFT_BRA estatutos RGT_BRA
 ;
 
 return: 
-RETURN returnAux SEMICOLON
+RETURN exp SEMICOLON
 ;
-
-returnAux:
-constante
-| exp
-;
-
+// TODO EXPRESION SUBDIVISION
 expresion:
+expresion1  
+
+expresion1:
 exp expresion2
 ;
 

@@ -28,8 +28,17 @@ Int|Float|Bool|String {yylval.strval= strdup(yytext); return TYPE;}
 \= {return EQUAL;}
 \.\.\. {return FOR_RANGE;}
 \| {return CASE_OR;}
-[<|>|!=|<=|>=|==] {return COM_OP;}
-\&\& | \|\| {return LOG_OP;}
+
+< {return LOW_OP;}
+> {return GRT_OP;}
+!= {return NOT_EQ;}
+<= {return LOW_EQ;}
+>= {return GRT_EQ;}
+== {return EQ_EQ;}
+
+&& {return AND_OP;}
+|| {return OR_OP;}
+
 \{ {return LFT_BRA;}
 \} {return RGT_BRA;}
 \[ {return SLFT_BRA;}
